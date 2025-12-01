@@ -100,7 +100,7 @@ class _FoodState extends State<Food> {
                       right: 8.w,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.grey,
+                      color:  const Color.fromARGB(255, 226, 224, 224),
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Text(
@@ -121,7 +121,7 @@ class _FoodState extends State<Food> {
                       right: 8.w,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.grey,
+                      color: const Color.fromARGB(255, 226, 224, 224),
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Text(
@@ -142,7 +142,7 @@ class _FoodState extends State<Food> {
                       right: 8.w,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.grey,
+                      color:  const Color.fromARGB(255, 226, 224, 224),
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Text(
@@ -163,7 +163,7 @@ class _FoodState extends State<Food> {
                       right: 8.w,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.grey,
+                      color:  const Color.fromARGB(255, 226, 224, 224),
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Text(
@@ -178,11 +178,10 @@ class _FoodState extends State<Food> {
                 ],
               ),
             ),
-            //SizedBox(height: 32.h),
             Expanded(
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 32),
-                // const EdgeInsets.all(20.0),
+                
                 child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
@@ -198,7 +197,7 @@ class _FoodState extends State<Food> {
                         showModalBottomSheet(
                           context: context,
                           builder: (_) => FractionallySizedBox(
-                            heightFactor: 0.65,
+                            heightFactor: 0.7,
                             child: Container(
                               height: 0.8.sh,
                               child: SingleChildScrollView(
@@ -309,8 +308,8 @@ class _FoodState extends State<Food> {
                                                             });
                                                           },
                                                            child: Container(
-                                                              height: 19.5,
-                                                              width: 19.5,
+                                                              height: 19.5.h,
+                                                              width: 19.5.w,
                                                               decoration:
                                                                   BoxDecoration(
                                                                     color:

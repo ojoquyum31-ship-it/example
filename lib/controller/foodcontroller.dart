@@ -1,7 +1,11 @@
+//import 'package:example/screens/food.dart';
+//import 'package:example/screens/with_getx.dart';
+//import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Foodcontroller extends GetxController{
   RxInt counter =0.obs;
+  
   var foodList = <Map<String, dynamic>> [
     {
     "image": "assets/images/myhomefood_image.1.jpg",
@@ -49,4 +53,5 @@ class Foodcontroller extends GetxController{
   void resetQuantity() {
     counter.value = 1;
   }
+  
 }

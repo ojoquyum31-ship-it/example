@@ -51,7 +51,7 @@ class WithGetx extends StatelessWidget {
                       right: 8.w,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.grey,
+                      color: const Color.fromARGB(255, 226, 224, 224),
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Text(
@@ -72,7 +72,7 @@ class WithGetx extends StatelessWidget {
                       right: 8.w,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.grey,
+                      color: const Color.fromARGB(255, 226, 224, 224),
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Text(
@@ -93,7 +93,7 @@ class WithGetx extends StatelessWidget {
                       right: 8.w,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.grey,
+                      color:  const Color.fromARGB(255, 226, 224, 224),
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Text(
@@ -114,7 +114,7 @@ class WithGetx extends StatelessWidget {
                       right: 8.w,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.grey,
+                      color:  const Color.fromARGB(255, 226, 224, 224),
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Text(
@@ -150,7 +150,7 @@ class WithGetx extends StatelessWidget {
                           Get.bottomSheet(
                             Container(
                               child: FractionallySizedBox(
-                                heightFactor: 0.65,
+                                heightFactor: 0.7,
                                 child: SingleChildScrollView(
                                   child: Column(
                                     crossAxisAlignment:
