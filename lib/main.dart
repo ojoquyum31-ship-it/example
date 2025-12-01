@@ -1,4 +1,5 @@
 import 'package:example/screens/food.dart';
+import 'package:example/screens/my_app.dart';
 import 'package:example/screens/with_getx.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,40 +22,9 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          home: const Bottomnav(),
+          home: const MyAppScreen(),
         );
       },
-    );
-  }
-}
-
-class Bottomnav extends StatefulWidget {
-  const Bottomnav({super.key});
-
-  @override
-  State<Bottomnav> createState() => _BottomnavState();
-}
-
-class _BottomnavState extends State<Bottomnav> {
-  int currentIndex = 0;
-  final List<Widget> screens = [Food(), WithGetx()];
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body:
-       screens[currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (index) {
-          currentIndex = index;
-          setState(() {});
-        },
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'food'),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'with_getx'),
-        ],
-      ),
-     
     );
   }
 }
