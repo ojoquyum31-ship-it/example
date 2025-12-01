@@ -1,3 +1,4 @@
+import 'package:example/constants/app_string.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -54,20 +55,30 @@ final List<Map<String, dynamic>> foodItem = [
   },
 ];
 
+List<String> foodCategory = [
+  "Dinner Food",
+  "Economic Food",
+  "Hot Food",
+  "Family",
+];
+
 class _FoodState extends State<Food> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        // surfaceTintColor: Colors.transparent,
+        // backgroundColor: Colors.white,
         title: Container(
-          padding: EdgeInsets.only(left: 15.w, right: 20.w, top: 40.h),
+          padding: EdgeInsets.only(right: 20.w, top: 20.h, bottom: 20.h),
           width: 1.sw,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Icon(Icons.arrow_back),
-              SizedBox(width: 2.w),
-              Text("food"),
+              SizedBox(width: 6.w),
+              Text("Food"),
             ],
           ),
         ),
@@ -78,8 +89,11 @@ class _FoodState extends State<Food> {
           children: [
             TextFormField(
               decoration: InputDecoration(
-                prefixIcon: Icon(Icons.search),
-                hintText: "search food",
+                prefixIcon: Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Icon(Icons.search),
+                ),
+                hintText: "Search food",
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(6.r),
                 ),
@@ -90,6 +104,31 @@ class _FoodState extends State<Food> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
+                children:
+                 List.generate(foodCategory.length, (index){
+                   var category = foodCategory[index];
+                   return  Container(
+                     padding: EdgeInsets.only(
+                       top: 4.h,
+                       bottom: 4.h,
+                       left: 8.w,
+                       right: 8.w,
+                     ),
+                     margin: EdgeInsets.only(right: 18.w ),
+                     decoration: BoxDecoration(
+                       color: Colors.grey,
+                       borderRadius: BorderRadius.circular(6),
+                     ),
+                     child: Text(
+                       category,
+                       style: TextStyle(
+                         fontFamily: AppSting.interFont,
+                         fontSize: 14.sp,
+                         fontWeight: FontWeight.w400,
+                       ),
+                     ),
+                   );
+                 }),
                 children: [
                   //SizedBox(width: 18.w,),
                   Container(
@@ -185,7 +224,7 @@ class _FoodState extends State<Food> {
                 child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    childAspectRatio: 0.7,
+                    childAspectRatio: 0.67,
                     mainAxisSpacing: 20,
                     crossAxisSpacing: 20,
                   ),
@@ -194,196 +233,7 @@ class _FoodState extends State<Food> {
                     final food = foodItem[index];
                     return FoodCard(
                       ontap: () {
-                        showModalBottomSheet(
-                          context: context,
-                          builder: (_) => FractionallySizedBox(
-                            heightFactor: 0.7,
-                            child: Container(
-                              height: 0.8.sh,
-                              child: SingleChildScrollView(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(28.r),
-                                        topRight: Radius.circular(28.r),
-                                      ),
-                                      child: Image.asset(
-                                        food["image"],
-                                        height: 300.h,
-                                        width: double.infinity,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.only(left: 20.w),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            food["description"],
-                                            style: TextStyle(
-                                              fontFamily: "Inter",
-                                              fontSize: 24.sp,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Icon(
-                                                food["icon"],
-                                                color: Colors.yellow,
-                                                size: 40,
-                                              ),
-                                              Text(
-                                                food['text'],
-                                                style: TextStyle(
-                                                  fontFamily: "Inter",
-                                                  fontSize: 24.sp,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: Colors.grey,
-                                                ),
-                                              ),
-                                              const Spacer(),
-                                              StatefulBuilder(
-                                                builder: (context, setState) {
-                                                  return 
-                                                  Container(
-                                                    padding: EdgeInsets.only(right: 20.w ),
-                                                    child: Row(
-                                                      children: [
-                                                        GestureDetector(
-                                                          onTap: () {
-                                                            setState(() {
-                                                              if (quantity > 1) {
-                                                                quantity--;
-                                                              }
-                                                            });
-                                                          },
-                                                          child: Container(
-                                                            height: 19.5.h,
-                                                            width: 19.5.w,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                                  color:
-                                                                      Colors.grey,
-                                                                  shape: BoxShape
-                                                                      .circle,
-                                                                ),
-                                                            child: Center(
-                                                              child: Text(
-                                                                "-",
-                                                                style: TextStyle(
-                                                                  color: Colors
-                                                                      .white,
-                                                                  fontSize: 16.sp,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w900,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        SizedBox(width: 19.5.w,),
-                                                          Text(
-                                                            quantity
-                                                                .toString(),
-                                                            style: TextStyle(
-                                                              fontSize: 16.sp,
-                                                              fontWeight:
-                                                                  FontWeight.w500,
-                                                            ),
-                                                          ),
-                                                        SizedBox(width: 19.5.w,),
-                                                        GestureDetector(
-                                                          onTap: () {
-                                                            setState(() {
-                                                              if (quantity == 1);
-                                                              quantity++;
-                                                            });
-                                                          },
-                                                           child: Container(
-                                                              height: 19.5.h,
-                                                              width: 19.5.w,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                    color:
-                                                                        Colors.teal,
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                  ),
-                                                              child: Center(
-                                                                child: Text(
-                                                                  "+",
-                                                                  style: TextStyle(
-                                                                    fontWeight: FontWeight.w900,
-                                                                    fontSize: 15.sp,
-                                                                    color: Colors
-                                                                        .white,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                        )
-                                                      ],
-                                                    ),
-                                                  );
-                                                },
-                                              ),
-                                            ],
-                                          ),
-                                          Text(
-                                            'Rp${food["amount"]}',
-                                            style: TextStyle(
-                                              fontFamily: "Inter",
-                                              fontSize: 24.sp,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                          SizedBox(height: 32.h),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                              right: 16.h,
-                                            ),
-
-                                            child: Container(
-                                              height: 45.h,
-                                              width: 371.w,
-                                              decoration: BoxDecoration(
-                                                color: const Color(0xFF008C8C),
-                                                borderRadius:
-                                                    BorderRadius.circular(6.r),
-                                              ),
-                                              child: Center(
-                                                child: Text(
-                                                  "Place Order",
-                                                  style: TextStyle(
-                                                    color: const Color(
-                                                      0xFFFFFFFF,
-                                                    ),
-                                                    fontFamily: "Inter",
-                                                    fontSize: 16.sp,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          isScrollControlled: true,
-                        );
+                        buildFoodDetailModal(context, food);
                       },
                       image: food["image"],
                       description: food["description"],
@@ -474,4 +324,196 @@ class FoodCard extends StatelessWidget {
       ),
     );
   }
+}
+
+
+Future<dynamic> buildFoodDetailModal(
+    BuildContext context,
+    Map<String, dynamic> food,
+    ) async{
+  return showModalBottomSheet(
+    context: context,
+    builder: (_) => Container(
+      height: 0.61.sh,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(28.r),
+              topRight: Radius.circular(28.r),
+            ),
+            child: Image.asset(
+              food["image"],
+              height: 300.h,
+              width: double.infinity,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(left: 20.w),
+            child: Column(
+              crossAxisAlignment:
+              CrossAxisAlignment.start,
+              children: [
+                Text(
+                  food["description"],
+                  style: TextStyle(
+                    fontFamily: "Inter",
+                    fontSize: 24.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment:
+                  MainAxisAlignment.start,
+                  children: [
+                    Icon(
+                      food["icon"],
+                      color: Colors.yellow,
+                      size: 40,
+                    ),
+                    Text(
+                      food['text'],
+                      style: TextStyle(
+                        fontFamily: "Inter",
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    const Spacer(),
+                    StatefulBuilder(
+                      builder: (context, setState) {
+                        return
+                          Container(
+                            padding: EdgeInsets.only(right: 20.w ),
+                            child: Row(
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      if (quantity > 1) {
+                                        quantity--;
+                                      }
+                                    });
+                                  },
+                                  child: Container(
+                                    height: 19.5.h,
+                                    width: 19.5.w,
+                                    decoration:
+                                    BoxDecoration(
+                                      color:
+                                      Colors.grey,
+                                      shape: BoxShape
+                                          .circle,
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        "-",
+                                        style: TextStyle(
+                                          color: Colors
+                                              .white,
+                                          fontSize: 16.sp,
+                                          fontWeight:
+                                          FontWeight
+                                              .w900,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(width: 19.5.w,),
+                                Text(
+                                  quantity
+                                      .toString(),
+                                  style: TextStyle(
+                                    fontSize: 16.sp,
+                                    fontWeight:
+                                    FontWeight.w500,
+                                  ),
+                                ),
+                                SizedBox(width: 19.5.w,),
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      if (quantity == 1);
+                                      quantity++;
+                                    });
+                                  },
+                                  child: Container(
+                                    height: 19.5,
+                                    width: 19.5,
+                                    decoration:
+                                    BoxDecoration(
+                                      color:
+                                      Colors.teal,
+                                      shape: BoxShape
+                                          .circle,
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        "+",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 15.sp,
+                                          color: Colors
+                                              .white,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          );
+                      },
+                    ),
+                  ],
+                ),
+                Text(
+                  'Rp${food["amount"]}',
+                  style: TextStyle(
+                    fontFamily: "Inter",
+                    fontSize: 24.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                SizedBox(height: 32.h),
+                Padding(
+                  padding: EdgeInsets.only(
+                    right: 16.h,
+                  ),
+
+                  child: Container(
+                    height: 45.h,
+                    width: 371.w,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF008C8C),
+                      borderRadius:
+                      BorderRadius.circular(6.r),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Place Order",
+                        style: TextStyle(
+                          color: const Color(
+                            0xFFFFFFFF,
+                          ),
+                          fontFamily: "Inter",
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    ),
+    isScrollControlled: true,
+  );
 }
